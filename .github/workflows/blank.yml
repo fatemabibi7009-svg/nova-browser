@@ -17,26 +17,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Download the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Install Java 17
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
 
-      # 3. Set up Gradle
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
 
-      # 4. Build the debug APK
+      - name: Create Android debug keystore
+        run: |
+          keytool -genkeypair \
+            -v \
+            -keystore debug.keystore \
+            -storepass android \
+            -alias androiddebugkey \
+            -keypass android \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
+
       - name: Build APK
         run: gradle assembleDebug
 
-      # 5. Upload the APK so you can download it
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
