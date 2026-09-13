@@ -1,0 +1,7 @@
+{
+  "name": "Nova Browser",
+  "description": "A high-performance Android web browser featuring built-in Nova Search engine, YouTube ad-free streaming shield, multi-tab browsing, downloads, and privacy controls.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
